@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +23,16 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
         return view('home');
+    }
+
+    public function notify()
+    {
+        // dd(auth()->user()); 
+
+        // $userCreatedEvent = new UserCreated();
+        // event(new UserCreated(auth()->user()));
+        UserCreated::dispatch(auth()->user());
     }
 }

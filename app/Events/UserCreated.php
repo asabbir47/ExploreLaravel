@@ -10,8 +10,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class UserCreated implements ShouldBroadcast
+class UserCreated implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,10 +21,18 @@ class UserCreated implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(User $user)
+
+    public $user;
+
+    public function __construct($user)
     {
         //
         $this->user = $user;
+    }
+
+    public function broadcastAs()
+    {
+        return 'publicDD';
     }
 
     /**
@@ -33,6 +42,7 @@ class UserCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('App.Models.User'.$this->user->id);
+        // dd($this->user->id);
+        return new PrivateChannel('publicD.'.$this->user->id);
     }
 }
