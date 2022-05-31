@@ -35,6 +35,11 @@ class UserCreated implements ShouldBroadcastNow
         return 'publicDD';
     }
 
+    public function broadcastWith()
+    {
+        return  ['message' => 'ferethyuk'];
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -43,6 +48,6 @@ class UserCreated implements ShouldBroadcastNow
     public function broadcastOn()
     {
         // dd($this->user->id);
-        return new PrivateChannel('publicD.'.$this->user->id);
+        return new PrivateChannel('publicD.' . $this->user->id);
     }
 }
