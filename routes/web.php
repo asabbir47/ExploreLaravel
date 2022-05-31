@@ -20,4 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home/notifyExample', [App\Http\Controllers\HomeController::class, 'notify'])->name('notify');
+Route::post('/home/notifyExample', [App\Http\Controllers\HomeController::class, 'notify'])->name('notify');

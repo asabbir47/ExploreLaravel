@@ -23,21 +23,31 @@
 @endsection
 @section('script')
 <script>
-    window.Laravel = {'csrfToken': '{{csrf_token()}}'};
+    // window.Laravel = {'csrfToken': '{{csrf_token()}}'};
     // Pusher.logToConsole = true;
     // console.log(window.Echo);
-    window.Echo.private(`publicD.{{auth()->user()->id}}`)
+    window.Echo.private(`publicD.{{Auth::check()}}`)
         .listen('.publicDD', (e) => {
             console.log('here');
             console.log(e);
         });
 
+    setTimeout(function(){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $.ajax({
-            url: '/home/notifyExample',
-            type: 'GET',
-            success: function (data) {
-                console.log('hello');
-            }
-        });  
+        url: '/home/notifyExample',
+        type: 'POST',
+        success: function (data) {
+            console.log('hello');
+        }
+    });  
+    },1000)
+
+    
 </script>
 @endsection
