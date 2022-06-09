@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('publicD.{id}',function($user, $id){
     // dd($user);
+    // dd((int) $user->id === (int) $id);
     return (int) $user->id === (int) $id;
     return true;
 });

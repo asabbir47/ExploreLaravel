@@ -23,6 +23,7 @@ class UserCreated implements ShouldBroadcastNow
      */
 
     public $user;
+    public $afterCommit = true;
 
     public function __construct($user)
     {
@@ -40,6 +41,10 @@ class UserCreated implements ShouldBroadcastNow
         return  ['message' => 'ferethyuk'];
     }
 
+    public function broadcastWhen()
+    {
+        return true; 
+    }
     /**
      * Get the channels the event should broadcast on.
      *

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="example">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -25,7 +25,7 @@
 <script>
     // window.Laravel = {'csrfToken': '{{csrf_token()}}'};
     // Pusher.logToConsole = true;
-    // console.log(window.Echo);
+    console.log(window.Echo);
     window.Echo.private(`publicD.{{Auth::check()}}`)
         .listen('.publicDD', (e) => {
             console.log('here');
